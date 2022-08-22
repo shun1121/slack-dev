@@ -45,10 +45,14 @@ app.post('/command', async (req, res) => {
   } else if (res.req.body.command === '/hey') {
     const currentTime = Math.floor(Date.now() / 1000)
     const expiration = currentTime + 3600
-    res.send(":ok:");
+    res.send(":grin:");
+    const result = await client.chat.postMessage({
+      channel: "#rss-test",
+      text: "Hello world"
+    });
     await web.users.profile.set({
       profile: {
-        status_emoji: ":ok:",
+        status_emoji: ":grin:",
         status_expiration: currentTime+30,
         // status_expiration: expiration
       }
