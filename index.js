@@ -47,7 +47,7 @@ app.post('/command', async (req, res) => {
     const expiration = currentTime + 3600
     res.send(":grin:");
     const result = await client.chat.postMessage({
-      channel: "#rss-test",
+      channel: process.env.CHANNEL_ID,
       text: "Hello world"
     });
     await web.users.profile.set({
