@@ -46,7 +46,7 @@ app.post('/command', async (req, res) => {
     const currentTime = Math.floor(Date.now() / 1000)
     const expiration = currentTime + 3600
     res.send(":ok:");
-    const result = await client.chat.postMessage({
+    const result = await web.chat.postMessage({
       channel: process.env.CHANNEL_ID,
       text: "Hello world"
     });
