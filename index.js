@@ -18,27 +18,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 
 // app.get('/', (req, res) => res.send('Hello World!'));
-app.get('/', function(req, res) {
-  res.send('Ngrok is working! Path Hit: ' + req.url);
-});
+
+// app.get('/', function(req, res) {
+//   res.send('Ngrok is working! Path Hit: ' + req.url);
+// });
 
 const server = createServer(app);
 
 server.listen(port, () => console.log(`listening on port ${port}!`));
 
 app.post('/command', async (req, res) => {
-  console.log(req)
+  // console.log(req)
   // console.log(res.body.command)
   if (res.req.body.command === '/hi') {
-    console.log(res.req.body.command)
+    // console.log(res.req.body.command)
     const currentTime = Math.floor(Date.now() / 1000)
-    const expiration = currentTime + 3600
+    // const expiration = currentTime + 3600
     // res.send(":pray:");
-    const post = await web.chat.postMessage({
-      token: process.env.USER_OAUTH_TOKEN,
-      channel: "#rss-test",
-      text: ":pray:"
-    });
     const result = await web.users.profile.set({
       profile: {
         status_emoji: ":pray:",
@@ -46,8 +42,13 @@ app.post('/command', async (req, res) => {
         // status_expiration: expiration
       }
     });
-    console.log(post)
-    console.log(result)
+    const post = await web.chat.postMessage({
+      token: process.env.USER_OAUTH_TOKEN,
+      channel: "#rss-test",
+      text: ":pray:"
+    });
+    // console.log(post)
+    // console.log(result)
   } else if (res.req.body.command === '/hey') {
     const currentTime = Math.floor(Date.now() / 1000)
     const expiration = currentTime + 3600
