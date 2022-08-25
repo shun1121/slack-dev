@@ -34,7 +34,7 @@ app.post('/command', async (req, res) => {
     // console.log(res.req.body.command)
     const currentTime = Math.floor(Date.now() / 1000)
     // const expiration = currentTime + 3600
-    res.send(":pray:");
+    res.send("");
     const result = await web.users.profile.set({
       profile: {
         status_emoji: ":pray:",
@@ -60,7 +60,7 @@ app.post('/command', async (req, res) => {
         // status_expiration: expiration
       }
     });
-    web.chat.postMessage({
+    const post = await web.chat.postMessage({
       token: process.env.USER_OAUTH_TOKEN,
       channel: "#rss-test",
       text: ":ok:"
