@@ -34,7 +34,7 @@ app.post('/command', async (req, res) => {
     // console.log(res.req.body.command)
     const currentTime = Math.floor(Date.now() / 1000)
     // const expiration = currentTime + 3600
-    // res.send(":pray:");
+    res.send(":pray:");
     const result = await web.users.profile.set({
       profile: {
         status_emoji: ":pray:",
