@@ -52,7 +52,7 @@ app.post('/command', async (req, res) => {
   } else if (res.req.body.command === '/hey') {
     const currentTime = Math.floor(Date.now() / 1000)
     const expiration = currentTime + 3600
-    res.send(":ok:");
+    // res.send(":ok:");
     await web.users.profile.set({
       profile: {
         status_emoji: ":ok:",
