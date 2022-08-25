@@ -27,13 +27,18 @@ const server = createServer(app);
 server.listen(port, () => console.log(`listening on port ${port}!`));
 
 app.post('/command', async (req, res) => {
-  // console.log(req)
+  console.log(req)
   // console.log(res.body.command)
   if (res.req.body.command === '/hi') {
     console.log(res.req.body.command)
     const currentTime = Math.floor(Date.now() / 1000)
     const expiration = currentTime + 3600
-    res.send(":pray:");
+    // res.send(":pray:");
+    const post = await web.chat.postMessage({
+      token: process.env.USER_OAUTH_TOKEN,
+      channel: "#rss-test",
+      text: ":pray:"
+    });
     const result = await web.users.profile.set({
       profile: {
         status_emoji: ":pray:",
@@ -41,15 +46,12 @@ app.post('/command', async (req, res) => {
         // status_expiration: expiration
       }
     });
+    console.log(post)
     console.log(result)
   } else if (res.req.body.command === '/hey') {
     const currentTime = Math.floor(Date.now() / 1000)
     const expiration = currentTime + 3600
     res.send(":ok:");
-    const result = await web.chat.postMessage({
-      channel: process.env.CHANNEL_ID,
-      text: "Hello world"
-    });
     await web.users.profile.set({
       profile: {
         status_emoji: ":ok:",
