@@ -60,7 +60,7 @@ app.post('/command', async (req, res) => {
         // status_expiration: expiration
       }
     });
-    const post = await web.chat.postMessage({
+    web.chat.postMessage({
       token: process.env.USER_OAUTH_TOKEN,
       channel: "#rss-test",
       text: ":ok:"
